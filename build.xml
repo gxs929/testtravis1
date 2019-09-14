@@ -4,7 +4,7 @@
  （2） 写build.xml 文件
  （3） 在命令行输入 cmd, ant 做测试。
  -->
-<project name="test" default="run" basedir=".">
+<project name="testtravis" default="run" basedir=".">
     <property name="src" value="src"/>
     <property name="dest" value="classes"/>
     <property name="hello_jar" value="hello.jar"/>
@@ -28,7 +28,7 @@
         <delete file="${hello_jar}"/>
     </target>
     <!-- 再次运行，这里显示了如何在一个 target 里边调用其他的 target -->
-    <target name="return" depends="clean,run">
+    <target name="test" depends="clean,run">
         <ant target="clean"/>
         <ant target="run"/>
     </target>
