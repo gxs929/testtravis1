@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ （1） 建一个src 文件夹，然后写一个HelloWorld.java，按照包结构目录放进去；
+ （2） 写build.xml 文件
+ （3） 在命令行输入 cmd, ant 做测试。
+ -->
+<project name="testtravis" default="run" basedir=".">
+    <property name="src" value="src"/>
+    <property name="dest" value="classes"/>
+    <property name="hello_jar" value="hello.jar"/>
+    <target name="init">
+        <mkdir dir="${dest}"/>
+    </target>
+    <target name="compile" depends="init">
+        <javac srcdir="${src}" destdir="${dest}"/>
+    </target>
+    <!-- 打jar 包 -->
+    <target name="jar" depends="compile">
+        <jar destfile="${hello_jar}" basedir="${dest}"></jar>
+    </target>
+    <!-- 运行jar 包内的程序-->
+    <target name="run" depends="jar">
+        <java classname="helloworld" classpath="${hello_jar}"/>
+    </target>
+    <!-- 删除生成文件-->
+    <target name="clean">
+        <delete dir="${dest}"/>
+        <delete file="${hello_jar}"/>
+    </target>
+    <!-- 再次运行，这里显示了如何在一个 target 里边调用其他的 target -->
+    <target name="return" depends="clean,run">
+        <ant target="clean"/>
+        <ant target="run"/>
+    </target>
+</project>
