@@ -4,7 +4,7 @@
  （2） 写build.xml 文件
  （3） 在命令行输入 cmd, ant 做测试。
  -->
-<project name="testtravis" default="run" basedir=".">
+<project name="test" default="run" basedir=".">
     <property name="src" value="src"/>
     <property name="dest" value="classes"/>
     <property name="hello_jar" value="hello.jar"/>
